@@ -1,0 +1,36 @@
+import React, { use } from 'react'
+import { Route,Routes, useLocation } from 'react-router-dom'
+// App.jsx
+import Home from './pages/Home.jsx'
+import MyListings from './pages/MyListings.jsx'
+import MarketPlace from './pages/MarketPlace.jsx'
+import ListingDetails from './pages/ListingDetails.jsx'
+import ManageListing from './pages/ManageListing.jsx'
+import Messages from './pages/Messages.jsx'
+import MyOrders from './pages/MyOrders.jsx'
+import Loading from './pages/Loading.jsx'
+import Navbar from './components/Navbar.jsx'
+
+const App = () => {
+  const {pathname} = useLocation();
+  return (
+    <div>
+      {
+        !pathname.includes('/admin') && <Navbar />
+      }
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/my-listings' element={<MyListings />} />
+        <Route path='/marketplace' element={<MarketPlace />} />
+        <Route path='/listing/:listingId' element={<ListingDetails/>} />
+        <Route path='/create-listing' element={<ManageListing/>} />
+        <Route path='/edit-listing/:listingId' element={<ManageListing/>} />
+        <Route path='/messages' element={<Messages/>} />
+        <Route path='/my-orders' element={<MyOrders/>} />
+        <Route path='/loading' element={<Loading/>} />
+      </Routes>
+    </div>
+  )
+}
+
+export default App
